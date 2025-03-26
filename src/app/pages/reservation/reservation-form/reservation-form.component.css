@@ -1,0 +1,30 @@
+.example-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.example-container>* {
+    width: 100%;
+}
+
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+.room-selected {
+    box-shadow: 0 0 30 rgba(0,0,0,0.7); /* Aumentar el efecto de sombra */
+    border: 3px solid rgb(30, 89, 89); /* Cambiar el borde del card */
+    transition: box-shadow 0.3s ease, border 0.3s ease; /* Agregar transiciones suaves */
+    background-color: #222;
+  }
+
+  .example-card {
+    padding: 5px;
+    border-radius: 8px;
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Dos columnas de igual tamaño */
+    gap: 10px; /* Espacio entre los elementos */
+}

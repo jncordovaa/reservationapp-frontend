@@ -1,0 +1,66 @@
+<h2 mat-dialog-title>Reservation Info</h2>
+<mat-dialog-content>
+    <div class="example-container">
+
+        <!--                <form [formGroup]="secondFormGroup">-->
+
+        <mat-form-field>
+            <mat-label>Customer Name</mat-label>
+            <input matInput placeholder="Customer Name" [(ngModel)]="reservation.customerName" required>
+        </mat-form-field>
+
+        <!--  </form>-->
+
+
+        <mat-form-field appearance="fill">
+            <mat-label>Check in Date - Check Out Date</mat-label>
+            <mat-date-range-input [rangePicker]="picker" [min]="minDate"  required>
+                <input matStartDate placeholder="Check In Date" [(ngModel)]="checkInDate"
+                    (dateChange)="getCheckInDate($event)" required>
+                <input matEndDate placeholder="Checkin Out Date" [(ngModel)]="checkOutDate"
+                    (dateChange)="getCheckOutDate($event)" required>
+            </mat-date-range-input>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-date-range-picker #picker></mat-date-range-picker>
+        </mat-form-field>
+
+        <mat-label>Selected Room: {{roomSelected.roomNumber}} </mat-label>
+        <p>{{roomSelected.roomTypeShortDescription}}</p>
+        <br>
+        <mat-label>Available Rooms:  </mat-label>
+        <br>
+        <div class ="cards" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%">
+            @for (m of rooms; track $index) {
+            <mat-card class="example-card" appearance="outlined" [ngClass]="{'room-selected' : roomSelected === m}">
+
+                <mat-card-header>
+                    <mat-card-title>Room {{m.roomNumber}}</mat-card-title>
+                    <mat-card-subtitle>Price: {{m.price}} $</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                    <p>
+                        {{m.roomTypeShortDescription}}
+                    </p>
+                </mat-card-content>
+
+                <mat-card-actions>
+                    <button mat-button (click)="selectRoom(m)">SELECT</button>
+                </mat-card-actions>
+            </mat-card>
+            }
+        </div>
+
+    </div>
+    <mat-error class="example-full-width">
+        <ul>
+          @for (error of errorBackend; track $index) {
+            <li>{{ error }}</li>
+          }
+        </ul>
+      </mat-error>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button mat-button (click)="operate()">Done</button>
+    <button mat-button (click)="close()">Cancel</button>
+</mat-dialog-actions>

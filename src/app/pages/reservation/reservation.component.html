@@ -1,0 +1,67 @@
+<router-outlet />
+
+<div class="title">
+    <mat-label>RESERVATION</mat-label>
+</div>
+<mat-toolbar>
+    <button mat-fab extended style="float: right;" (click)="openDialog()">
+        <mat-icon>add</mat-icon>
+        Add
+    </button>
+
+    <mat-form-field>
+        <mat-label>Filter</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+    </mat-form-field>
+    
+</mat-toolbar>
+
+<div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+
+        <ng-container matColumnDef="idReservation">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+            <td mat-cell *matCellDef="let row"> {{row.idReservation}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="customerName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> CUSTOMER NAME </th>
+            <td mat-cell *matCellDef="let row"> {{row.customerName}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="checkInDate">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> CHECK IN DATE </th>
+            <td mat-cell *matCellDef="let row"> {{row.checkInDate}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="checkOutDate">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> CHECK OUT DATE </th>
+            <td mat-cell *matCellDef="let row"> {{row.checkOutDate}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="roomNumber">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> ROOM NUMBER </th>
+            <td mat-cell *matCellDef="let row"> {{row.roomNumber}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="roomPrice">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> PRICE </th>
+            <td mat-cell *matCellDef="let row"> {{row.roomPrice}} $ </td>
+        </ng-container>
+
+        <ng-container matColumnDef="roomTypeShortDescription">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> ROOM DESCRIPTION </th>
+            <td mat-cell *matCellDef="let row"> {{row.roomTypeShortDescription}} </td>
+        </ng-container>
+
+
+
+        <tr mat-header-row *matHeaderRowDef="getDisplayedColumns()"></tr>
+        <tr mat-row *matRowDef="let row; columns: getDisplayedColumns();"></tr>
+
+    </table>
+</div>
+
+<mat-paginator [pageSizeOptions]="[10, 100]" aria-label="Select page of roomTypes"></mat-paginator>
+
+

@@ -1,0 +1,32 @@
+<mat-dialog-content>
+    <mat-toolbar><span>Room Type Info</span></mat-toolbar>
+
+    <div class="example-container">
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Short Description</mat-label>
+            <textarea matInput placeholder="Short Description" [(ngModel)]="roomType.shortDescription"
+                required></textarea>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Detailed Description</mat-label>
+            <textarea matInput placeholder="Detailed Description" [(ngModel)]="roomType.detailedDescription"
+                required></textarea>
+        </mat-form-field>
+    </div>
+    <mat-error class="example-full-width">
+        <ul>
+          @for (error of errorBackend; track $index) {
+            <li>{{ error }}</li>
+          }
+        </ul>
+      </mat-error>
+
+</mat-dialog-content>
+
+
+<mat-dialog-actions align="end">
+    <button mat-button (click)="operate()">Done</button>
+    <button mat-button (click)="close()">Cancel</button>
+</mat-dialog-actions>

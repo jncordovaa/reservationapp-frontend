@@ -1,0 +1,48 @@
+<h2 mat-dialog-title>Room Info</h2>
+<mat-dialog-content>
+  <div class="example-container">
+
+    <mat-form-field>
+      <mat-label>Room Type</mat-label>
+      <mat-select [(ngModel)]="room.idRoomType" required>
+        @for (sp of roomTypes; track sp) {
+        <mat-option [value]="sp.idRoomType">{{sp.shortDescription}} </mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Room Number</mat-label>
+      <input matInput type="number" min="0" placeholder="roomNumber" [(ngModel)]="room.roomNumber" required>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Floor</mat-label>
+      <input matInput type="number" min="0" placeholder="Floor" [(ngModel)]="room.floor" required>
+    </mat-form-field>
+
+    <mat-form-field floatLabel="always">
+      <mat-label>Price</mat-label>
+      <input matInput type="number" class="example-right-align" placeholder="0" step="1.00" min="0"
+        [(ngModel)]="room.price" required />
+      <span matTextPrefix>$&nbsp;</span>
+    </mat-form-field>
+
+    <mat-slide-toggle [(ngModel)]="room.available">Available: {{room.available}}</mat-slide-toggle>
+
+  </div>
+
+  <mat-error class="example-full-width">
+    <ul>
+      @for (error of errorBackend; track $index) {
+        <li>{{ error }}</li>
+      }
+    </ul>
+  </mat-error>
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="operate()">Done</button>
+  <button mat-button (click)="close()">Cancel</button>
+</mat-dialog-actions>
